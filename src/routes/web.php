@@ -22,4 +22,8 @@ Route::get('/', function () {
 Route::get('/register', [UserController::class, 'store1']);
 Route::get('/login',[UserController::class, 'login']);
 
+Route::get('/mypage/profile', [ItemController::class, 'profile']);
+
 Route::get('/', [ItemController::class, 'index']);
+Route::get('/sell', [ItemController::class, 'sell']);
+Route::get('/mypage', [ItemController::class, 'mypage']);

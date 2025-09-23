@@ -69,6 +69,35 @@
 }
 
 /* カテゴリー */
+.checkbox{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.category__item{
+    margin: 10px 8.5px;
+}
+
+.category{
+    display: none;
+}
+
+.category-name{
+    font-size: 20px;
+    padding: 5px 10px;
+    color: rgb(242, 95, 120);
+    border: 2px solid rgb(242, 95, 120);
+    border-radius: 50px;
+}
+
+.category:checked+
+.category-name{
+    color: white;
+    background: rgb(242, 95, 120);
+    border: 2px solid rgb(242, 95, 120);
+    border-radius: 50px;
+}
 
 .text{
     width: 100%;

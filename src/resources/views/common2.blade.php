@@ -12,9 +12,9 @@
 
 <body>
     <header class="header">
-        <div class="header-title">
+        <a href="/" class="header-title">
             <img class="header-title__icon" src="{{asset('storage/icon.png')}}">
-        </div>
+        </a>
         <div class="header-search">
             <form class="header-search__form" action="/search" method="post">
                 @csrf

@@ -1,0 +1,97 @@
+.purchase_background{
+    width: 100%;
+}
+
+.purchase{
+    width: 90%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.purchase_inner1{
+    width: 60%;
+}
+
+.item_content{
+    width: 100%;
+    display: flex;
+}
+
+.item_image{
+    width: 200px;
+    height: 200px;
+    background: rgb(206, 203, 203);
+    margin-right: 30px;
+}
+
+.name{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.price{
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+.border{
+    width: 100%;
+    height: 2px;
+    background: gray;
+    margin: 45px 0 30px;
+}
+
+.payment-method{
+    width: 100%;
+}
+
+.payment-method_title{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.payment-method_inner{
+    width: 100%;
+}
+
+.select{
+    width: 40%;
+    height: 40px;
+    margin:30px 0 5px 60px;
+}
+
+.user_shipping-address{
+    width: 100%;
+}
+
+.user_shipping-address_header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.shipping-address_title{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.shipping-address_update{
+    margin-right: 20px;
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(3, 163, 163);
+}
+
+.user_postcode-address{
+    width: 80%;
+    margin: 30px 0 5px 60px;
+}
+
+
+
+
+.purchase_inner2{
+    width: 32%;
+    margin: 0 5px;
+}

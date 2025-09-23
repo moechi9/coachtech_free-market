@@ -6,7 +6,7 @@
 @section('content')
 <div class="profile_background">
     <div class="profile__content">
-        <form action="" class="profile__content_form" enctype="multipart/form-data">
+        <form action="/mypage/profile" class="profile__content_form" enctype="multipart/form-data">
             @csrf
             <div class="profile__content_title">
                 <span class="title">プロフィール設定</span>

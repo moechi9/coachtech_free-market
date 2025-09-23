@@ -15,15 +15,20 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::post('/register', [UserController::class, 'store1']);
+Route::post('/mypage/profile', [UserController::class, 'store2']);
+Route::post('/login',[UserController::class, 'login']);
+
+Route::middleware('auth')->group(function(){
+    Route::get('/mypage/profile', [ItemController::class, 'profile']);
+    Route::get('/', [ItemController::class, 'index']);
+    Route::get('/item', [ItemController::class, 'item']);
+    Route::get('/purchase', [ItemController::class, 'purchase']);
+    Route::get('/purchase/address', [ItemController::class, 'address']);
+    Route::get('/sell', [ItemController::class, 'sell']);
+    Route::get('/mypage', [ItemController::class, 'mypage']);
 });
 
-Route::get('/register', [UserController::class, 'store1']);
-Route::get('/login',[UserController::class, 'login']);
 
-Route::get('/mypage/profile', [ItemController::class, 'profile']);
 
-Route::get('/', [ItemController::class, 'index']);
-Route::get('/sell', [ItemController::class, 'sell']);
-Route::get('/mypage', [ItemController::class, 'mypage']);

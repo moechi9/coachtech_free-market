@@ -30,7 +30,18 @@
                 <div class="group">
                     <div class="sell__content_inner-title">
                         <span class="label">カテゴリー</span>
-                        <!-- categoriesテーブル -->
+                        <div class="checkbox">
+                            @foreach($categories as $category)
+                            <label class="category__item" for="{{$category['id']}}">
+                                <input class="category" type="checkbox" name="category" value="{{$category['id']}}" id="{{$category['id']}}"><span class="category-name">{{$category['name']}}</span>
+                            </label>
+                            @endforeach
+                        </div>
+                        <div class="error">
+                            @error('season')
+                            {{ $message }}
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="group">
@@ -38,7 +49,12 @@
                         <span class="label">商品の状態</span>
                     </div>
                     <div class="sell__content_inner-input">
-                        <select class="text" name="condition" value="{{old('condition')}}" placeholder="選択してください"></select>
+                        <select class="text" name="condition" value="{{old('condition')}}">
+                            @foreach($conditions as $condition)
+                            <option value="" selected hidden>選択してください</option>
+                            <option value="{{$condition['id']}}">{{$condition['name']}}</option>
+                            @endforeach
+                        </select>
                         <div class="error">
                             @error('condition')
                             {{$message}}

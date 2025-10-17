@@ -16,9 +16,15 @@
                     <div class="sell__content_inner-title">
                         <span class="label">商品画像</span>
                     </div>
-                    <div class="image_border">
+                    <output class="image_border">
+                        
                         <label for="image" class="select">画像を選択する</label>
                         <input type="file" class="file" id="image" name="image" value="{{old('image')}}" />
+                    </output>
+                    <div class="error">
+                        @error('img')
+                        {{$message}}
+                        @enderror
                     </div>
                 </div>
                 <div class="group">

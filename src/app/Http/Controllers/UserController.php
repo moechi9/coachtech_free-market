@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Item;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
 {
-    public function store1(Request $request)
+    public function store1(RegisterRequest $request)
     {
         $user = User::create([
             'name' => $request->name,
@@ -20,15 +24,29 @@ class UserController extends Controller
         return redirect('/mypage/profile');
     }
 
-    public function store2(Request $request){
-        $dir = 'images';
-        $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('mypage_profile', compact('user'));
+    }
 
-        $user_data = new User();
-        $user_data->image = 'storage/' . $dir . '/' . $file_name;
+    public function store2(ProfileRequest $request)
+    {
+        if ($request->hasFile('image')) {
+            $dir = 'user_img';
+            $file = $request->file('image');
+            $userId = auth()->id();
+            $file_name = "user{$userId}.{$file->extension()}";
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+            $user_data = User::find($_POST["id"]);
+            $user_data->image = 'storage/' . $dir . '/' . $file_name;
+        } else {
+            $user_data = User::find($_POST["id"]);
+            $user_data->image = $request->input('existing_image_path');
+        }
+
         $user_data->name = $_POST["name"];
-        $user_data->postcode = $_POST["post-code"];
+        $user_data->postcode = $_POST["postcode"];
         $user_data->address = $_POST["address"];
         $user_data->building = $_POST["building"];
         $user_data->save();
@@ -36,12 +54,55 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect('/');
         }
-        return redirect('/login')->withErrors(['email' => 'メールアドレスまたはパスワードが間違っています']);
+        return redirect('/login')->withErrors(['email' => 'ログイン情報が登録されていません']);
+    }
+
+    public function address($item_id)
+    {
+        $item = Item::find($item_id);
+        $items = Item::with('user')->get();
+        return view('address', compact('item', 'items'));
+    }
+
+    public function addressUpdate(Request $request)
+    {
+
+        return redirect('/purchase/{item_id}');
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('mypage_edit', compact('user'));
+    }
+
+    public function editUpdate(ProfileRequest $request)
+    {
+        if ($request->hasFile('image')) {
+            $dir = 'user_img';
+            $file = $request->file('image');
+            $userId = auth()->id();
+            $file_name = "user{$userId}.{$file->extension()}";
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+            $user_data = User::find($_POST["id"]);
+            $user_data->image = 'storage/' . $dir . '/' . $file_name;
+        } else {
+            $user_data = User::find($_POST["id"]);
+            $user_data->image = $request->input('existing_image_path');
+        }
+
+        $user_data->name = $_POST["name"];
+        $user_data->postcode = $_POST["postcode"];
+        $user_data->address = $_POST["address"];
+        $user_data->building = $_POST["building"];
+        $user_data->save();
+
+        return redirect('/mypage');
     }
 }

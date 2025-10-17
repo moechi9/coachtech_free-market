@@ -3,8 +3,8 @@
 }
 
 .sell__content {
-    width: 50%;
-    margin: 50px auto;
+    width: 60%;
+    margin: 5vh auto;
 }
 
 .sell__content_form,
@@ -15,8 +15,8 @@
 }
 
 .profile__content_title {
-    margin: 10px 0;
-    font-size: 30px;
+    margin: 1vh 0;
+    font-size: 2vw;
     font-weight: bold;
     display: flex;
 }
@@ -32,25 +32,25 @@
 }
 
 .sell__content_inner-title{
-    margin: 20px 0 10px;
+    margin: 2vh 0 1vh;
 }
 
 .label {
-    font-size: 20px;
+    font-size: 1.5vw;
     font-weight: bold;
 }
 
 .image_border{
     height: 200px;
-    border:1px solid gray;
+    border:0.1vh solid gray;
     display: flex;
 }
 
 .select{
     color: rgb(242, 95, 120);
-    border:1px solid rgb(242, 95, 120);
+    border:0.1vh solid rgb(242, 95, 120);
     border-radius: 3px;
-    padding: 5px;
+    padding: 0.5vh;
     margin: auto;
 }
 
@@ -59,16 +59,15 @@
 }
 
 .sub-title{
-    font-size: 30px;
+    font-size: 2vw;
     color: gray;
 }
 
 .border{
-    height: 2px;
+    height: 0.2vh;
     background-color: gray;
 }
 
-/* カテゴリー */
 .checkbox{
     display: flex;
     flex-wrap: wrap;
@@ -76,7 +75,7 @@
 }
 
 .category__item{
-    margin: 10px 8.5px;
+    margin: 1vh 0.5vw;
 }
 
 .category{
@@ -84,10 +83,10 @@
 }
 
 .category-name{
-    font-size: 20px;
-    padding: 5px 10px;
+    font-size: 1.5vw;
+    padding: 0.5vh 1vw;
     color: rgb(242, 95, 120);
-    border: 2px solid rgb(242, 95, 120);
+    border: 0.3vh solid rgb(242, 95, 120);
     border-radius: 50px;
 }
 
@@ -95,7 +94,7 @@
 .category-name{
     color: white;
     background: rgb(242, 95, 120);
-    border: 2px solid rgb(242, 95, 120);
+    border: 0.3vh solid rgb(242, 95, 120);
     border-radius: 50px;
 }
 
@@ -103,32 +102,32 @@
     width: 100%;
     border-radius: 3px;
     border-color: rgb(184, 185, 186);
-    font-size: 20px;
-    height: 40px;
+    font-size: 1.5vw;
+    height: 4vh;
 }
 
 .error {
     width: 100%;
-    height: 30px;
+    height: 3vh;
     color: red;
-    font-size: 15px;
+    font-size: 1vw;
 }
 
 .textarea{
     width: 100%;
     border-radius: 3px;
     border-color: rgb(184, 185, 186);
-    font-size: 20px;
-    height: 80px;
+    font-size: 1.5vw;
+    height: 8vh;
 }
 
 .button__register {
     width: 100%;
-    height: 50px;
-    font-size: 20px;
+    height: 5vh;
+    font-size: 1.5vw;
     border-radius: 3px;
     color: white;
-    margin: 20px 0;
+    margin: 2vh 0;
     border: none;
     background: rgb(241, 43, 76);
 }

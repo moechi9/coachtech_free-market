@@ -43,7 +43,7 @@
                         <span class="label">パスワード</span>
                     </div>
                     <div class="register__content_inner-input">
-                        <input type="text" class="text" name="password" value="{{old('password')}}" />
+                        <input type="password" class="text" name="password" value="{{old('password')}}" />
                         <div class="error">
                             @error('password')
                             {{$message}}
@@ -56,7 +56,7 @@
                         <span class="label">確認用パスワード</span>
                     </div>
                     <div class="register__content_inner-input">
-                        <input type="text" class="text" name="password_confirmation" value="{{old('password_confirmation')}}" />
+                        <input type="password" class="text" name="password_confirmation" value="{{old('password_confirmation')}}" />
                         <div class="error">
                             @error('password')
                             {{$message}}

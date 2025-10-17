@@ -4,7 +4,7 @@
 
 .purchase{
     width: 90%;
-    margin: 50px auto;
+    margin: 5vh auto;
     display: flex;
     justify-content: space-between;
 }
@@ -19,25 +19,25 @@
 }
 
 .item_image{
-    width: 200px;
-    height: 200px;
+    width: 20vw;
+    aspect-ratio: 1;
     background: rgb(206, 203, 203);
-    margin-right: 30px;
+    margin-right: 3vw;
 }
 
 .name{
-    font-size: 30px;
+    font-size: 2vw;
     font-weight: bold;
 }
 
 .price{
-    font-size: 30px;
-    margin: 15px 0;
+    font-size: 2vw;
+    margin: 1.5vh 0;
 }
 
 .border{
     width: 100%;
-    height: 2px;
+    height: 0.2vh;
     background: gray;
     margin: 45px 0 30px;
 }
@@ -47,8 +47,9 @@
 }
 
 .payment-method_title{
-    margin-left: 20px;
-    font-size: 20px;
+    margin-left: 2vw;
+    font-size: 1.5vw;
+    font-weight: bold;
 }
 
 .payment-method_inner{
@@ -57,8 +58,9 @@
 
 .select{
     width: 40%;
-    height: 40px;
-    margin:30px 0 5px 60px;
+    height: 4vh;
+    margin:3vh 0 0.5vh 6vw;
+    font-size: 1.5vw;
 }
 
 .user_shipping-address{
@@ -72,20 +74,22 @@
 }
 
 .shipping-address_title{
-    margin-left: 20px;
-    font-size: 20px;
+    margin-left: 2vw;
+    font-size: 1.5vw;
+    font-weight: bold;
 }
 
 .shipping-address_update{
-    margin-right: 20px;
-    font-size: 15px;
+    margin-right: 2vw;
+    font-size: 1vw;
     text-decoration: none;
     color: rgb(3, 163, 163);
 }
 
 .user_postcode-address{
+    font-size: 1.5vw;
     width: 80%;
-    margin: 30px 0 5px 60px;
+    margin: 3vh 0 0.5vh 8vw;
 }
 
 
@@ -93,5 +97,35 @@
 
 .purchase_inner2{
     width: 32%;
-    margin: 0 5px;
+    margin: 0 0.5vw;
+}
+
+.price_confirmed,.payment-method_confirmed{
+    width: 100%;
+    border: 0.1vh solid black;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 4vh 0;
+    font-size: 1.5vw;
+}
+
+.price_confirmed{
+    border-bottom: 0.05vh solid black;
+}
+
+.payment-method_confirmed{
+    border-top: 0.05vh solid black;
+}
+
+.purchase_button{
+    width: 100%;
+    height: 4vh;
+    color: white;
+    background: rgb(241, 43, 76);
+    border-radius: 3px;
+    border: none;
+    padding: 0.5vh 0;
+    font-size: 1.5vw;
+    margin: 5vh 0;
 }

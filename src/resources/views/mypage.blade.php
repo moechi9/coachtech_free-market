@@ -8,36 +8,34 @@
     <div class="mypage_user">
         <div class="user">
             <div class="user_name">
-            <img class="user_image" src="" alt="">
-            <span class="user_title">ユーザー名</span>
+                @if ($user->image === null)
+                <img class="user_image" src="{{asset('storage/default.png')}}" alt="デフォルト">
+                @else
+                <img class="user_image" src="{{$user['image']}}" alt="{{$user['image']}}">
+                @endif
+                <span class="user_title">{{$user['name']}}</span>
             </div>
-            <a href="/mypage/profile" class="update">プロフィールを編集</a>
+            <a href="/mypage/edit" class="update">プロフィールを編集</a>
         </div>
     </div>
     <div class="mypage_top">
         <div class="mypage_top__button">
-            <form action="" class="form">
-                @csrf
-                <button class="mypage_top__button_sell">出品した商品</button>
-            </form>
-            <form action="" class="form">
-                @csrf
-                <button class="mypage_top__button_buy">購入した商品</button>
-            </form>
+            <a href="{{ route('mypage',['page'=>'sell']) }}" class="mypage_top__button_sell">出品した商品</a>
+            <a href="{{ route('mypage',['page'=>'buy']) }}" class="mypage_top__button_buy">購入した商品</a>
         </div>
         <div class="border"></div>
     </div>
     <div class="mypage_content">
-
+        @foreach($items as $item)
         <div class="item-card">
-            <a class="item-card__link" href="">
+            <a class="item-card__link" href="{{route('item.item_id',['item_id'=>$item['id']])}}">
                 <div class="item-card__img">
-                    <img class="item-card__img-item" src="" alt="" />
+                    <img class="item-card__img-item" src="{{asset($item['img'])}}" alt="{{$item['img']}}" />
                 </div>
-                <div class="item-card__content">商品名</div>
+                <div class="item-card__content">{{$item['name']}}</div>
             </a>
         </div>
-
+        @endforeach
     </div>
 </div>
 @endsection

@@ -10,7 +10,7 @@
     @yield('css')
 </head>
 
-<body>
+<body class="body">
     <header class="header">
         <a href="/" class="header-title">
             <img class="header-title__icon" src="{{asset('storage/icon.png')}}">

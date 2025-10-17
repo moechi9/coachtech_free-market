@@ -1,15 +1,24 @@
-.header{
-    background: black;
-    height: 80px;
+.body{
+    margin: 0;
 }
 
-.header-title{
-    height: 100%;
-    width: 30%;
+.header{
+    background: black;
+    width: 100%;
+    height: 7vh;
     display: flex;
     align-items: center;
 }
 
+.header-title{
+    height: 70%;
+    width: calc(100%/3);
+    display: flex;
+    align-items: center;
+    padding: 0 2.5%;
+}
+
 .header-title__icon{
     width: 100%;
+    height: 100%;
 }

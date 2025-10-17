@@ -19,9 +19,9 @@ class UsersTableSeeder extends Seeder
             'id' => 1,
             'name' => 'user1',
             'email' => 'user1@email.com',
-            'password' => Hash::make('user1'),
-            'image' => 'storage/user_img/user1',
-            'post-code' => '2608667',
+            'password' => Hash::make('user1-bread'),
+            'image' => 'storage/user_img/user1.png',
+            'postcode' => '260-8667',
             'address' => '千葉市中央区市場町1-1',
         ];
         DB::table('users')->insert($param);
@@ -29,9 +29,9 @@ class UsersTableSeeder extends Seeder
             'id' => 2,
             'name' => 'user2',
             'email' => 'user2@email.com',
-            'password' => Hash::make('user2'),
-            'image' => 'storage/user_img/user2',
-            'post-code' => '1638001',
+            'password' => Hash::make('user2-ghost'),
+            'image' => 'storage/user_img/user2.png',
+            'postcode' => '163-8001',
             'address' => '新宿区西新宿2-8-1',
         ];
         DB::table('users')->insert($param);
@@ -39,9 +39,9 @@ class UsersTableSeeder extends Seeder
             'id' => 3,
             'name' => 'user3',
             'email' => 'user3@email.com',
-            'password' => Hash::make('user3'),
-            'image' => 'storage/user_img/user3',
-            'post-code' => '2318588',
+            'password' => Hash::make('user3-girl'),
+            'image' => 'storage/user_img/user3.png',
+            'postcode' => '231-8588',
             'address' => '横浜市中区日本大通1',
         ];
         DB::table('users')->insert($param);

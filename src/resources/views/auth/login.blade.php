@@ -30,7 +30,7 @@
                         <span class="label">パスワード</span>
                     </div>
                     <div class="login__content_inner-input">
-                        <input type="text" class="text" name="password" value="{{old('password')}}" />
+                        <input type="password" class="text" name="password" value="{{old('password')}}" />
                         <div class="error">
                             @error('password')
                             {{$message}}

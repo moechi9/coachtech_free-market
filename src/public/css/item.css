@@ -1,0 +1,172 @@
+.item{
+    width: 100%;
+}
+
+.item_inner{
+    width: 80%;
+    margin: 5vh auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item_inner1{
+    width: 40%;
+}
+
+.item_image,.image{
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.item_inner2{
+    width: 45%;
+}
+
+.item_name{
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.item_brand{
+    font-size: 1vw;
+    margin: 1vh 0;
+}
+
+.item_price{
+    font-size: 1.5vw;
+    margin-top: 1vh;
+}
+
+.price{
+    font-size: 2vw;
+}
+
+.item_stamps{
+    display: flex;
+}
+
+.favorite_mark,.comment_mark{
+    margin: 1vh 2vw;
+}
+
+.star{
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+.favorite_count,.comment_count{
+    font-size: 1vw;
+    text-align: center;
+}
+
+.button{
+    width: 100%;
+    height: 3vh;
+    font-size: 1vw;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    background: rgb(241, 43, 76);
+}
+
+.item_content__title,.item_information__title{
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin: 2vh 0 1vh;
+}
+
+.item_content__inner{
+    margin: 1vh 0;
+}
+
+.content{
+    width: 97.5%;
+    font-size: 1.2vw;
+    border:none;
+}
+
+.item_category,.item_condition{
+    margin: 0 0 1vh 1.5vw;
+    display: flex;
+}
+
+.category_title,.condition_title{
+    font-size: 1.2vw;
+    margin-right: 3vw;
+    font-weight: bold;
+}
+
+.category_inner{
+    display: flex;
+    align-items: center;
+    font-size: 0.7vw;
+    padding: 0 1vw;
+    background: rgb(234, 233, 233);
+    border-radius: 50px;
+    margin: 0 0.5vw;
+}
+
+.condition_inner{
+    display: flex;
+    align-items: center;
+    font-size: 0.7vw;
+    padding: 0 1vw;
+    margin: 0 0.5vw;
+}
+
+.comment_title{
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: gray;
+    margin: 2vh 0 1vh;
+}
+
+.comment_user{
+    display: flex;
+}
+
+.user_image{
+    width: 3vw;
+    aspect-ratio: 1;
+    border-radius: 50px;
+    background: rgb(234, 233, 233);
+}
+
+.user_name{
+    margin: auto 1vw;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
+.comment_latest{
+    margin: 0.5vh 0;
+}
+
+.latest_comment{
+    width: 97.5%;
+    margin: 0.5vh 0 1.5vh;
+    border-radius: 3px;
+    font-size: 1.2vw;
+    padding: 1vh 0.5vw;
+    background: rgb(234, 233, 233);
+    border: none;
+}
+
+.my-comment_title{
+    margin: 0.5vh 0;
+    font-size: 1.4vw;
+    font-weight: bold;
+}
+
+.textarea{
+    width: 97.5%;
+    height: 10vh;
+    font-size: 1.2vw;
+    padding: 0.5vh 0.5vw;
+}
+
+.error{
+    font-size: 1.2vw;
+    color: red;
+    height: 2vh;
+}

@@ -34,15 +34,18 @@ class Item extends Model
         return $this->belongsToMany(Category::class, 'item_category', 'item_id', 'category_id');
     }
 
-    public function favorites(){
-        return $this->hasMany(Favorite::class,'item_id');
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'item_id');
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class,'item_id');
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'item_id');
     }
 
-    public function is_liked_by_auth_user(){
+    public function is_liked_by_auth_user()
+    {
         $id = Auth::id();
 
         $likers = array();
@@ -55,5 +58,13 @@ class Item extends Model
         } else {
             return false;
         }
+    }
+
+    public function scopeKeywordSearch($query, $keyword)
+    {
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+        return $query;
     }
 }

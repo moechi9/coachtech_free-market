@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -40,11 +41,9 @@ class UserController extends Controller
             $request->file('image')->storeAs('public/' . $dir, $file_name);
             $user_data = User::find($_POST["id"]);
             $user_data->image = 'storage/' . $dir . '/' . $file_name;
-        } else {
-            $user_data = User::find($_POST["id"]);
-            $user_data->image = $request->input('existing_image_path');
         }
 
+        $user_data = User::find($_POST["id"]);
         $user_data->name = $_POST["name"];
         $user_data->postcode = $_POST["postcode"];
         $user_data->address = $_POST["address"];
@@ -66,14 +65,23 @@ class UserController extends Controller
     public function address($item_id)
     {
         $item = Item::find($item_id);
-        $items = Item::with('user')->get();
-        return view('address', compact('item', 'items'));
+        $userId = Auth::id();
+        $user = Auth::user();
+        Session::put('previous_url', request()->fullUrl());
+        return view('address', compact('item', 'userId', 'user'));
     }
 
     public function addressUpdate(Request $request)
     {
+        $user = $request->only(['postcode', 'address', 'building']);
+        User::find($request->id)->update($user);
 
-        return redirect('/purchase/{item_id}');
+        $redirectUrl = Session::get('previous_url');
+        if ($redirectUrl) {
+            Session::forget('previous_url');
+            return redirect($redirectUrl);
+        }
+        return redirect('/');
     }
 
     public function edit()

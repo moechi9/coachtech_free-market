@@ -19,15 +19,15 @@
             <div class="item_stamps">
                 <div class="favorite_mark">
                     @if($item->is_liked_by_auth_user())
-                    <a href="{{ route('unlike',['item_id'=>$item['id']]) }}" class="star">&#9734;</a>
+                    <a href="{{ route('unlike',['item_id'=>$item['id']]) }}" class="star_like">&#9734;</a>
                     <div class="favorite_count">{{$item->favorites->count()}}</div>
                     @else
-                    <a href="{{ route('like',['item_id'=>$item['id']]) }}" class="star">&#9734;</a>
+                    <a href="{{ route('like',['item_id'=>$item['id']]) }}" class="star_unlike">&#9734;</a>
                     <div class="favorite_count">{{$item->favorites->count()}}</div>
                     @endif
                 </div>
                 <div class="comment_mark">
-                    <div class="balloon"></div>
+                    <img class="balloon" src="{{asset('storage/comment_img/comment.png')}}" alt="コメント">
                     <div class="comment_count">1</div>
                 </div>
             </div>
@@ -49,30 +49,35 @@
                 <div class="condition_title">商品の状態</div>
                 <div class="condition_inner">{{$item->condition->name}}</div>
             </div>
-            <form class="item_comment">
-                <div class="comment_title">コメント(1)</div>
-                <div class="comment_user">
-                    <div class="user_image"></div>
-                    <div class="user_name">admin</div>
-                </div>
-                <div class="comment_latest">
-                    <input type="text" class="latest_comment" name="latest_comment" value="こちらにコメントが入ります。" readonly />
-                </div>
-                <div class="my-comment_title">商品へのコメント</div>
-                <div class="my-comment_input">
-                    <textarea name="comment" id="comment" class="textarea"></textarea>
-                    <div class="error">
-                        @error('comment')
-                        {{$message}}
-                        @enderror
-                    </div>
-                </div>
-                <div class="comment_button">
-                    <button class="button">コメントを送信する</button>
-                </div>
-            </form>
+    </form>
+    @foreach($item->comments as $comment)
+    <div class="comment_title">コメント(1)</div>
+    <div class="comment_user">
+        <div class="user_image">{{$comment->user->image}}</div>
+        <div class="user_name">{{$comment->user->name}}</div>
+    </div>
+    <div class="comment_latest">
+        <input type="text" class="latest_comment" name="latest_comment" value="{{$comment->comment}}" readonly />
+    </div>
+    @endforeach
+    <form class="item_comment" action="/comment" method="post">
+        @csrf
+        <div class="my-comment_title">商品へのコメント</div>
+        <div class="my-comment_input">
+            <input type="text" name="comment" id="comment" class="textarea" value="{{old('$comment->comment')}}">
+            <input type="hidden" name="item_id" value="{{$item->id}}">
+            <div class="error">
+                @error('comment')
+                {{$message}}
+                @enderror
+            </div>
+        </div>
+        <div class="comment_button">
+            <button class="button">コメントを送信する</button>
         </div>
     </form>
+</div>
+
 </div>
 
 @endsection

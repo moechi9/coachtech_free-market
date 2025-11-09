@@ -16,10 +16,11 @@
             <img class="header-title__icon" src="{{asset('storage/icon.png')}}">
         </a>
         <div class="header-search">
-            <form class="header-search__form" action="/search" method="post">
+            <form class="header-search__form" action="{{ url()->current() }}" method="get" >
                 @csrf
                 <input class="header-search__form_item" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
             </form>
+
         </div>
         <div class="header-button">
             <form class="header-button__item" action="/logout" method="post">

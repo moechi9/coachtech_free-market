@@ -35,6 +35,7 @@
                     </div>
                     <div class="profile__content_inner-input">
                         <input type="text" class="text" name="name" value="{{$user['name']}}" />
+                        <input type="hidden" name="id" value="{{$user['id']}}">
                         <div class="error">
                             @error('name')
                             {{$message}}

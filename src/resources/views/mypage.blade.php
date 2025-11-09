@@ -20,8 +20,8 @@
     </div>
     <div class="mypage_top">
         <div class="mypage_top__button">
-            <a href="{{ route('mypage',['page'=>'sell']) }}" class="mypage_top__button_sell">出品した商品</a>
-            <a href="{{ route('mypage',['page'=>'buy']) }}" class="mypage_top__button_buy">購入した商品</a>
+            <a href="{{ route('mypage',['page'=>'sell']) }}" class="{{$request->query('page') === 'sell'?'mypage_top__button_selected1':'mypage_top__button_sell'}}">出品した商品</a>
+            <a href="{{ route('mypage',['page'=>'buy']) }}" class="{{$request->query('page') === 'buy'?'mypage_top__button_selected2':'mypage_top__button_buy'}}">購入した商品</a>
         </div>
         <div class="border"></div>
     </div>

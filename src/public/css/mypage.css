@@ -22,7 +22,7 @@
 
 .user_image{
     width: 10vw;
-    object-fit: cover;
+    aspect-ratio: 1;
     margin-right: 3vw;
     border-radius: 50%;
 }
@@ -58,6 +58,15 @@
     font-weight: bold;
 }
 
+.mypage_top__button_selected1 {
+    text-decoration: none;
+    background: white;
+    color: rgb(242, 95, 120);
+    font-size: 1.5vw;
+    margin-left: 15vw;
+    font-weight: bold;
+}
+
 .mypage_top__button_buy {
     text-decoration: none;
     background: white;
@@ -67,9 +76,13 @@
     font-weight: bold;
 }
 
-.mypage_top__button_sell:active,
-.mypage_top__button_buy:active {
+.mypage_top__button_selected2 {
+    text-decoration: none;
+    background: white;
     color: rgb(242, 95, 120);
+    font-size: 1.5vw;
+    margin-left: 5vw;
+    font-weight: bold;
 }
 
 .border {

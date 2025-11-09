@@ -21,8 +21,8 @@
                 <div class="payment-method_inner">
                     <select name="method" id="method" class="select">
                         <option value="" selected hidden>選択してください</option>
-                        <option value="convenience-store">コンビニ払い</option>
-                        <option value="credit-card">カード支払い</option>
+                        <option value="コンビニ払い">コンビニ払い</option>
+                        <option value="カード支払い">カード支払い</option>
                     </select>
                 </div>
             </div>
@@ -33,8 +33,8 @@
                     <a href="{{route('purchase.address.item_id',['item_id'=>$item['id']])}}" class="shipping-address_update">変更する</a>
                 </div>
                 <div class="user_postcode-address">
-                    <div class="postcode">〒{{$item->user->postcode}}</div>
-                    <div class="address">{{$item->user->address}}{{$item->user->building}}</div>
+                    <div class="postcode">〒{{$user->postcode}}</div>
+                    <div class="address">{{$user->address}}{{$user->building}}</div>
                 </div>
             </div>
             <div class="border"></div>
@@ -46,12 +46,27 @@
             </div>
             <div class="payment-method_confirmed">
                 <div class="payment-method_confirmed_title">支払い方法</div>
-                <div class="payment-method_confirmed_inner"></div>
+                <div class="payment-method_confirmed_inner" id="method_display"></div>
             </div>
             <button class="purchase_button">購入する</button>
         </div>
     </form>
 </div>
+
+<script>
+    const itemSelect = document.getElementById('method');
+    const displayArea = document.getElementById('method_display');
+
+    itemSelect.addEventListener('change', function() {
+        const selectedValue = this.value;
+
+        if (selectedValue) {
+            displayArea.textContent = selectedValue;
+        } else {
+            displayArea.textContent = '';
+        }
+    });
+</script>
 
 
 @endsection

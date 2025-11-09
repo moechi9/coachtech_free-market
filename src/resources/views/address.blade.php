@@ -6,7 +6,7 @@
 @section('content')
 <div class="address_background">
     <div class="address_content">
-        <form action="{{route('purchase.address.item_id.update',['item_id'=>$item['id']])}}" method="post" class="address__content_form">
+        <form action="{{route('purchase.address.item_id',['item_id'=>$item['id']])}}" method="patch" class="address__content_form">
             @csrf
             @method('PATCH')
             <div class="address__content_title">
@@ -18,7 +18,7 @@
                         <span class="label">郵便番号</span>
                     </div>
                     <div class="address__content_inner-input">
-                        <input type="text" class="text" name="postcode" value="{{$item->user->postcode}}">
+                        <input type="text" class="text" name="postcode" value="{{$user->postcode}}">
                         <input type="hidden" name="id" value="">
                         <div class="error">
                             @error('postcode')
@@ -32,7 +32,7 @@
                         <span class="label">住所</span>
                     </div>
                     <div class="address__content_inner-input">
-                        <input type="text" class="text" name="address" value="{{$item->user->address}}">
+                        <input type="text" class="text" name="address" value="{{$user->address}}">
                         <input type="hidden" name="id" value="">
                         <div class="error">
                             @error('address')
@@ -46,7 +46,7 @@
                         <span class="label">建物名</span>
                     </div>
                     <div class="address__content_inner-input">
-                        <input type="text" class="text" name="building" value="{{$item->user->building}}">
+                        <input type="text" class="text" name="building" value="{{$user->building}}">
                         <input type="hidden" name="id" value="">
                         <div class="error"></div>
                     </div>

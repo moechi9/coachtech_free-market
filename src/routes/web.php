@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -23,24 +24,24 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [UserController::class, 'profile']);
-    Route::post('/mypage/profile', [UserController::class, 'store2']);
+    Route::patch('/mypage/profile', [UserController::class, 'store2']);
 
     Route::get('/', [ItemController::class, 'index'])->name('index');
-    // 検索機能
 
     Route::get('/item/{item_id}', [ItemController::class, 'item'])->name('item.item_id');
-    Route::get('/item/{item_id}/like',[FavoriteController::class,'like'])->middleware('auth')->name('like');
+    Route::get('/item/{item_id}/like', [FavoriteController::class, 'like'])->middleware('auth')->name('like');
     Route::get('/item/{item_id}/unlike', [FavoriteController::class, 'unlike'])->middleware('auth')->name('unlike');
-    // いいね機能
+    Route::post('/comment',[CommentController::class,'comment'])->middleware('auth')->name('comment');
     // コメント機能
 
     Route::get('/purchase/{item_id}', [ItemController::class, 'purchase'])->name('purchase.item_id');
     // 購入処理
 
     Route::get('/purchase/address/{item_id}', [UserController::class, 'address'])->name('purchase.address.item_id');
-    Route::patch('/purchase/address/{item_id}/update', [UserController::class, 'addressUpdate'])->name('purchase.address.item_id.update');
+    Route::patch('/purchase/address/{item_id}', [UserController::class, 'addressUpdate'])->name('purchase.address.item_id');
 
     Route::get('/sell', [ItemController::class, 'sell']);
+    Route::post('/sell', [ItemController::class, 'sellPost']);
     // 出品処理
 
     Route::get('/mypage', [ItemController::class, 'mypage'])->name('mypage');

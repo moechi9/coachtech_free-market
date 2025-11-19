@@ -17,9 +17,9 @@
                         <span class="label">商品画像</span>
                     </div>
                     <output class="image_border" id="list">
-                        <label for="image" class="select">画像を選択する</label>
-                        <input type="file" class="file" id="image" name="image" value="{{old('img')}}" />
                     </output>
+                    <label for="img" class="select">画像を選択する</label>
+                    <input type="file" class="file" id="img" name="img" value="{{old('img')}}" />
                     <div class="error">
                         @error('img')
                         {{$message}}
@@ -125,34 +125,34 @@
                 <button class="button__register">出品する</button>
             </div>
         </form>
-
-        <script>
-            document.getElementById('image').onchange = function(event) {
-
-                initializeFiles();
-
-                var files = event.target.files;
-
-                for (var i = 0, f; f = files[i]; i++) {
-                    var reader = new FileReader;
-                    reader.readAsDataURL(f);
-
-                    reader.onload = (function(theFile) {
-                        return function(e) {
-                            var div = document.createElement('div');
-                            div.className = 'reader_file';
-                            div.innerHTML += '<img class="reader_image" src="' + e.target.result + '" />';
-                            document.getElementById('list').insertBefore(div, null);
-                        }
-                    })(f);
-                }
-            };
-
-            function initializeFiles() {
-                document.getElementById('list').innerHTML = '';
-            }
-        </script>
     </div>
 </div>
+
+<script>
+    document.getElementById('img').onchange = function(event) {
+
+        initializeFiles();
+
+        var files = event.target.files;
+
+        for (var i = 0, f; f = files[i]; i++) {
+            var reader = new FileReader;
+            reader.readAsDataURL(f);
+
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    var div = document.createElement('div');
+                    div.className = 'reader_file';
+                    div.innerHTML += '<img class="reader_image" src="' + e.target.result + '" />';
+                    document.getElementById('list').insertBefore(div, null);
+                }
+            })(f);
+        }
+    };
+
+    function initializeFiles() {
+        document.getElementById('list').innerHTML = '';
+    }
+</script>
 
 @endsection

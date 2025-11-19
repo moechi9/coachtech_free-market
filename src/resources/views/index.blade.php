@@ -7,7 +7,7 @@
 <div class="index_background">
     <div class="index_top">
         <div class="index_top__button">
-            <a href="/" class="{{url()->current()==route('index')?'index_top__button_selected1':'index_top__button_recs'}}">おすすめ</a>
+            <a href="/" class="{{$request->query('tab') === 'mylist'?'index_top__button_recs':'index_top__button_selected1'}}">おすすめ</a>
             <a href="{{route('index',['tab'=>'mylist'])}}" class="{{$request->query('tab') === 'mylist'?'index_top__button_selected2':'index_top__button_my-list'}}">マイリスト</a>
         </div>
         <div class="border"></div>

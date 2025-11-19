@@ -28,7 +28,7 @@
                 </div>
                 <div class="comment_mark">
                     <img class="balloon" src="{{asset('storage/comment_img/comment.png')}}" alt="コメント">
-                    <div class="comment_count">1</div>
+                    <div class="comment_count">{{$item->comments->count()}}</div>
                 </div>
             </div>
             <div class="item_button__purchase">
@@ -50,16 +50,20 @@
                 <div class="condition_inner">{{$item->condition->name}}</div>
             </div>
     </form>
-    @foreach($item->comments as $comment)
-    <div class="comment_title">コメント(1)</div>
+
+    <div class="comment_title">コメント({{$item->comments->count()}})</div>
+    @if($item->latestComment)
     <div class="comment_user">
-        <div class="user_image">{{$comment->user->image}}</div>
-        <div class="user_name">{{$comment->user->name}}</div>
+        <img class="user_image" src="{{asset($item->latestComment->user->image)}}" alt="{{$item->latestComment->user->image}}">
+        <div class="user_name">{{$item->latestComment->user->name}}</div>
     </div>
     <div class="comment_latest">
-        <input type="text" class="latest_comment" name="latest_comment" value="{{$comment->comment}}" readonly />
+        <input type="text" class="latest_comment" name="latest_comment" value="{{$item->latestComment->comment}}" readonly />
     </div>
-    @endforeach
+    @else
+    <p>まだコメントはありません。</p>
+    @endif
+
     <form class="item_comment" action="/comment" method="post">
         @csrf
         <div class="my-comment_title">商品へのコメント</div>

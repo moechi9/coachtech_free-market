@@ -44,6 +44,11 @@ class Item extends Model
         return $this->hasMany(Comment::class, 'item_id');
     }
 
+    public function latestComment()
+    {
+        return $this->hasOne(Comment::class, 'item_id')->latestOfMany();
+    }
+
     public function is_liked_by_auth_user()
     {
         $id = Auth::id();

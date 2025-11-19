@@ -16,17 +16,24 @@
             <img class="header-title__icon" src="{{asset('storage/icon.png')}}">
         </a>
         <div class="header-search">
-            <form class="header-search__form" action="{{ url()->current() }}" method="get" >
+            <form class="header-search__form" action="{{ url()->current() }}" method="get">
                 @csrf
                 <input class="header-search__form_item" type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
             </form>
 
         </div>
         <div class="header-button">
+            @if (Auth::check())
             <form class="header-button__item" action="/logout" method="post">
                 @csrf
                 <button class="header-button__item_logout">ログアウト</button>
             </form>
+            @else
+            <form class="header-button__item" action="/login" method="get">
+                @csrf
+                <button class="header-button__item_login">ログイン</button>
+            </form>
+            @endif
             <form class="header-button__item" action="/mypage" method="get">
                 @csrf
                 <button class="header-button__item_mypage">マイページ</button>

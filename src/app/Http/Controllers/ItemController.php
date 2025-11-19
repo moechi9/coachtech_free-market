@@ -8,7 +8,6 @@ use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\ItemCategory;
-use App\Models\User;
 
 class ItemController extends Controller
 {
@@ -17,10 +16,17 @@ class ItemController extends Controller
         $user = Auth::user();
 
         if ($request->tab === 'mylist') {
-            $items = $user->favorites()->with('item')->get();
+            if (Auth::check()) {
+                $items = Item::whereHas('favorites', function ($query) use ($user) {
+                    $query->where('user_id', $user->id);
+                })->get();
+            } else {
+                $items = collect();
+            }
+        } else {
+            $userId = Auth::id();
+            $items = Item::where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
         }
-        $userId = Auth::id();
-        $items = Item::where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
 
         if ($request->has('keyword')) {
             $items = Item::KeywordSearch($request->keyword)->where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
@@ -33,6 +39,7 @@ class ItemController extends Controller
         $item = Item::find($item_id);
         $items = Item::with('condition')->get();
         $items = Item::with('categories')->get();
+        $item = Item::with('latestComment.user')->findOrFail($item_id);
         return view('item', compact('item', 'items'));
     }
 
@@ -40,6 +47,7 @@ class ItemController extends Controller
     {
         $item = Item::find($item_id);
         $user = Auth::user();
+        session(['previous-url' => request()->fullUrl()]);
         return view('purchase', compact('item', 'user'));
     }
 
@@ -53,13 +61,14 @@ class ItemController extends Controller
     public function sellPost(Request $request)
     {
         $dir = 'item_img';
-        $file = $request->file('image');
-        $file_name = "{$_POST["name"]}.{$file->extension()}";
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
+        $file_name = $request->file('img')->getClientOriginalName();
+
+        $request->file('img')->storeAs('public/' . $dir, $file_name);
+
 
         $item_data = new Item();
         $item_data->user_id = Auth::id();
-        $item_data->condition_id = $request->input('category_id');
+        $item_data->condition_id = $request->input('condition');
         $item_data->name = $_POST["name"];
         $item_data->brand = $_POST["brand"];
         $item_data->price = $_POST["price"];
@@ -87,7 +96,9 @@ class ItemController extends Controller
         if ($request->page === 'sell') {
             $userId = Auth::id();
             $items = Item::where('user_id', $userId)->orderby('id', 'asc')->get();
+        } elseif ($request->page === 'buy') {
         } else {
+            $items = collect();
         }
 
         if ($request->has('keyword')) {

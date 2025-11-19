@@ -6,7 +6,7 @@
 @section('content')
 <div class="address_background">
     <div class="address_content">
-        <form action="{{route('purchase.address.item_id',['item_id'=>$item['id']])}}" method="patch" class="address__content_form">
+        <form action="{{route('purchase.address.item_id',['item_id'=>$item['id']])}}" method="post" class="address__content_form">
             @csrf
             @method('PATCH')
             <div class="address__content_title">

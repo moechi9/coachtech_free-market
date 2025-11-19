@@ -8,13 +8,14 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    public function comment(Request $request){
-        $user_id=Auth::id();
-        $input=$request['comment'];
-        $input=['user_id'=>$user_id];
-        $comment=new Comment();
-        $comment->fill($input)->save();
+    public function comment(Request $request)
+    {
+        $comment = new Comment();
+        $comment->comment = $request->comment;
+        $comment->item_id = $request->item_id;
+        $comment->user_id = Auth::user()->id;
+        $comment->save();
 
-        return redirect($input['item_id'])->back();
+        return back();
     }
 }

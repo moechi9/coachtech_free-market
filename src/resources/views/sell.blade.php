@@ -38,12 +38,12 @@
                         <div class="checkbox">
                             @foreach($categories as $category)
                             <label class="category__item" for="{{$category['id']}}">
-                                <input class="category" type="checkbox" name="category" value="{{$category['id']}}" id="{{$category['id']}}"><span class="category-name">{{$category['name']}}</span>
+                                <input class="category" type="checkbox" name="item_category[]" value="{{$category['id']}}" id="{{$category['id']}}"><span class="category-name">{{$category['name']}}</span>
                             </label>
                             @endforeach
                         </div>
                         <div class="error">
-                            @error('season')
+                            @error('category')
                             {{ $message }}
                             @enderror
                         </div>

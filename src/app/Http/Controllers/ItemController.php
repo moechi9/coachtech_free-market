@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
@@ -60,13 +61,11 @@ class ItemController extends Controller
         return view('sell', compact('categories', 'conditions'));
     }
 
-    public function sellPost(Request $request)
+    public function sellPost(ExhibitionRequest $request)
     {
         $dir = 'item_img';
         $file_name = $request->file('img')->getClientOriginalName();
-
         $request->file('img')->storeAs('public/' . $dir, $file_name);
-
 
         $item_data = new Item();
         $item_data->user_id = Auth::id();

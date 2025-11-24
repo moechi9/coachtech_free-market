@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\AddressRequest;
 
 class UserController extends Controller
 {
@@ -66,7 +66,7 @@ class UserController extends Controller
         return view('address', compact('item', 'userId', 'user'));
     }
 
-    public function addressUpdate(Request $request)
+    public function addressUpdate(AddressRequest $request)
     {
         $auth = Auth::user();
         $user = $request->only(['postcode', 'address', 'building']);

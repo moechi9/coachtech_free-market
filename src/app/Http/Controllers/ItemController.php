@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Sale;
 use App\Models\ItemCategory;
 
 class ItemController extends Controller
@@ -19,7 +20,7 @@ class ItemController extends Controller
             if (Auth::check()) {
                 $items = Item::whereHas('favorites', function ($query) use ($user) {
                     $query->where('user_id', $user->id);
-                })->get();
+                })->orderby('id', 'asc')->get();
             } else {
                 $items = collect();
             }
@@ -31,7 +32,8 @@ class ItemController extends Controller
         if ($request->has('keyword')) {
             $items = Item::KeywordSearch($request->keyword)->where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
         }
-        return view('index', compact('request', 'items'));
+        $sold_items = Item::with('sale')->get();
+        return view('index', compact('request', 'items', 'sold_items'));
     }
 
     public function item(Request $request, $item_id)
@@ -97,6 +99,9 @@ class ItemController extends Controller
             $userId = Auth::id();
             $items = Item::where('user_id', $userId)->orderby('id', 'asc')->get();
         } elseif ($request->page === 'buy') {
+            $items = Item::whereHas('sale', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->orderby('id', 'asc')->get();
         } else {
             $items = collect();
         }
@@ -104,27 +109,19 @@ class ItemController extends Controller
         if ($request->has('keyword')) {
             $items = Item::KeywordSearch($request->keyword)->get();
         }
-        return view('mypage', compact('user', 'request', 'items'));
+        $sold_items = Item::with('sale')->get();
+        return view('mypage', compact('user', 'request', 'items', 'sold_items'));
     }
 
-    public function buyPost(Request $request)
+    public function sale($item_id)
     {
-        $itemId = $request->input('item_id');
-        $quantity = $request->input('quantity', 1);
-        $item = Item::find($itemId);
+        Sale::create(
+            [
+                'item_id' => $item_id,
+                'user_id' => Auth::id()
+            ]
+        );
 
-        if (!$item) {
-            return response()->json(['message' => '商品が存在しません'], 404);
-        }
-
-        $item->stock -= $quantity;
-        $item->save();
-
-        $sale = new Sale([
-            'product_id' => $itemId,
-        ]);
-
-        $sale->save();
-        return response()->json(['message' => '購入成功']);
+        return redirect('/');
     }
 }

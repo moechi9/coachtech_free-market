@@ -117,3 +117,8 @@
 .item-card__content {
     font-size: 1.5vw;
 }
+
+.item-card__sold {
+    font-size: 1.5vw;
+    color: red;
+}

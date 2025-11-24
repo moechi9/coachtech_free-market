@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
-    public function comment(Request $request)
+    public function comment(CommentRequest $request)
     {
         $comment = new Comment();
         $comment->comment = $request->comment;

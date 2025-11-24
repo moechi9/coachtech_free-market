@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="purchase_background">
-    <form class="purchase" action="" method="">
+    <form class="purchase" action="{{route('sale.item_id',['item_id'=>$item['id']])}}" method="post">
         @csrf
         <div class="purchase_inner1">
             <div class="item_content">
@@ -24,6 +24,11 @@
                         <option value="コンビニ払い">コンビニ払い</option>
                         <option value="カード支払い">カード支払い</option>
                     </select>
+                </div>
+                <div class="error">
+                    @error('method')
+                    {{$message}}
+                    @enderror
                 </div>
             </div>
             <div class="border"></div>

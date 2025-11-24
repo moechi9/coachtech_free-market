@@ -16,7 +16,7 @@ class FavoriteController extends Controller
     {
         Favorite::create([
             'item_id' => $id,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::id()
         ]);
 
         return redirect()->back();

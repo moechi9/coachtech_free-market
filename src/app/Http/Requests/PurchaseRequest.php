@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PurchaseRequest extends FormRequest
 {
@@ -23,8 +24,18 @@ class PurchaseRequest extends FormRequest
      */
     public function rules()
     {
+        $allowedStatuses = ['コンビニ払い', 'カード支払い'];
+        return[
+            'method' => ['required', Rule::in($allowedStatuses)],
+            'address' => ['required']
+        ];
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'method.required' => '支払い方法を選択してください',
+            'address.required' => '住所を入力してください'
         ];
     }
 }

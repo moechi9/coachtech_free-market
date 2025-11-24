@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/comment',[CommentController::class,'comment'])->middleware('auth')->name('comment');
 
     Route::get('/purchase/{item_id}', [ItemController::class, 'purchase'])->name('purchase.item_id');
-    // 購入処理
+    Route::post('/sale/{item_id}', [ItemController::class, 'sale'])->name('sale.item_id');
 
     Route::get('/purchase/address/{item_id}', [UserController::class, 'address'])->name('purchase.address.item_id');
     Route::patch('/purchase/address/{item_id}', [UserController::class, 'addressUpdate'])->name('purchase.address.item_id');

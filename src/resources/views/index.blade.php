@@ -22,6 +22,9 @@
                     <img class="item-card__img-item" src="{{asset($item['img'])}}" alt="{{$item['img']}}" />
                 </div>
                 <div class="item-card__content">{{$item['name']}}</div>
+                @if($item->sale)
+                <div class="item-card__sold">sold</div>
+                @endif
             </a>
         </div>
         @endforeach
@@ -33,6 +36,9 @@
                     <img class="item-card__img-item" src="{{asset($item['img'])}}" alt="{{$item['img']}}" />
                 </div>
                 <div class="item-card__content">{{$item['name']}}</div>
+                @if($item->sale)
+                <div class="item-card__sold">sold</div>
+                @endif
             </a>
         </div>
         @endforeach

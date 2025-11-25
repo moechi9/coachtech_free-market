@@ -38,8 +38,15 @@
                     <a href="{{route('purchase.address.item_id',['item_id'=>$item['id']])}}" class="shipping-address_update">変更する</a>
                 </div>
                 <div class="user_postcode-address">
-                    <div class="postcode">〒{{$user->postcode}}</div>
-                    <div class="address">{{$user->address}}{{$user->building}}</div>
+                    <input type="text" class="postcode" name="address" value="〒{{$user->postcode}}" readonly />
+                    <input type="text" class="address" name="address" value="{{$user->address}}{{$user->building}}" readonly />
+                    <!-- <div class="postcode">〒{{$user->postcode}}</div>
+                    <div class="address">{{$user->address}}{{$user->building}}</div> -->
+                </div>
+                <div class="error">
+                    @error('address')
+                    {{$message}}
+                    @enderror
                 </div>
             </div>
             <div class="border"></div>

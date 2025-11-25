@@ -68,7 +68,7 @@
         @csrf
         <div class="my-comment_title">商品へのコメント</div>
         <div class="my-comment_input">
-            <input type="text" name="comment" id="comment" class="textarea" value="{{old('$comment->comment')}}">
+            <textarea name="comment" id="comment" class="textarea"></textarea>
             <input type="hidden" name="item_id" value="{{$item->id}}">
             <div class="error">
                 @error('comment')

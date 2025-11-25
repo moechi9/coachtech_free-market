@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
@@ -112,7 +113,7 @@ class ItemController extends Controller
         return view('mypage', compact('user', 'request', 'items', 'sold_items'));
     }
 
-    public function sale($item_id)
+    public function sale(PurchaseRequest $request, $item_id)
     {
         Sale::create(
             [

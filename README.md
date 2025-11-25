@@ -72,3 +72,7 @@ DB_PASSWORD=laravel_pass
 - プロフィール設定画面(初回登録時):/mypage/profile
 - プロフィール編集画面:/mypage/edit
 
+## 追加仕様について
+
+### コメント機能は最新のコメントのみ表示されるようにしています
+

@@ -95,6 +95,7 @@
 .postcode,.address{
     border: none;
     display: block;
+    width: 100%;
 }
 
 .purchase_inner2{

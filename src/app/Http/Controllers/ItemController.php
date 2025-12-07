@@ -17,17 +17,17 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        $userId = Auth::id();
 
         if ($request->tab === 'mylist') {
             if (Auth::check()) {
                 $items = Item::whereHas('favorites', function ($query) use ($user) {
                     $query->where('user_id', $user->id);
-                })->orderby('id', 'asc')->get();
+                })-> where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
             } else {
                 $items = collect();
             }
         } else {
-            $userId = Auth::id();
             $items = Item::where("user_id", "!=", $userId)->orderby('id', 'asc')->get();
         }
 

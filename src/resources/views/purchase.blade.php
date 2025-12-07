@@ -40,8 +40,6 @@
                 <div class="user_postcode-address">
                     <input type="text" class="postcode" name="address" value="〒{{$user->postcode}}" readonly />
                     <input type="text" class="address" name="address" value="{{$user->address}}{{$user->building}}" readonly />
-                    <!-- <div class="postcode">〒{{$user->postcode}}</div>
-                    <div class="address">{{$user->address}}{{$user->building}}</div> -->
                 </div>
                 <div class="error">
                     @error('address')

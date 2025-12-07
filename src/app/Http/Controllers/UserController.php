@@ -24,6 +24,11 @@ class UserController extends Controller
         return redirect('/mypage/profile');
     }
 
+    public function mail()
+    {
+        return view('auth.mail');
+    }
+
     public function profile()
     {
         $user = Auth::user();

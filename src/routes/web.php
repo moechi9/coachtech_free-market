@@ -26,6 +26,8 @@ Route::get('/', [ItemController::class, 'index'])->name('index');
 
 Route::get('/item/{item_id}', [ItemController::class, 'item'])->name('item.item_id');
 
+Route::get('/mail', [UserController::class, 'mail']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [UserController::class, 'profile']);
     Route::patch('/mypage/profile', [UserController::class, 'store2']);

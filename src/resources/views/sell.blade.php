@@ -43,7 +43,7 @@
                             @endforeach
                         </div>
                         <div class="error">
-                            @error('category')
+                            @error('item_category')
                             {{ $message }}
                             @enderror
                         </div>
